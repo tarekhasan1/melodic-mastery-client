@@ -22,6 +22,10 @@
   .logo-img {
     width: 50px;
   }
+
+  .fancy-font {
+    font-family: 'FancyFont', cursive;
+  }
   
   @media (max-width: 768px) {
     .active-route {

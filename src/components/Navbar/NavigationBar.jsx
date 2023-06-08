@@ -13,7 +13,7 @@ const NavigationBar = () => {
           variant="dark"
         >
           <Container>
-            <Navbar.Brand className="text-secondary" href="/"> <img className="logo-img" src='logo' alt="" /> <span className="text-white fw-bold">M</span>elody <span className="text-white fw-bold">M</span>astery</Navbar.Brand>
+            <Navbar.Brand className="text-secondary fancy-font fs-3" href="/"> <img className="logo-img" src='logo' alt="" /> <span className="text-white fw-bold fancy-font">M</span>elodic <span className="text-white fw-bold fancy-font">M</span>astery</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mx-auto ms-4">
