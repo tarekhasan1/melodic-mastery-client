@@ -1,0 +1,27 @@
+.signup-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .signup-container .text-center {
+    margin-top: 2rem;
+  }
+  
+  .signup-container form {
+    padding: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-container form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .signup-container form .form-control {
+    border-radius: 0.25rem;
+  }
+  
+  .signup-container form .alert {
+    margin-bottom: 1rem;
+  }
+  

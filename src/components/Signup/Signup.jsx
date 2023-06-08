@@ -22,7 +22,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="login-container my-5">
+    <div className="signup-container my-5">
       <Row className="justify-content-center">
         <Col className='d-flex align-items-center' xs={12} md={6} lg={4}>
           <div className="text-center mt-5">
