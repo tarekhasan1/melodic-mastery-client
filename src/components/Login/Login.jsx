@@ -27,7 +27,7 @@ const Login = () => {
       <Row className="justify-content-center">
         <Col className='d-flex align-items-center' xs={12} md={6} lg={4}>
           <div className="text-center mt-5">
-            <img src="https://imgs.bharatmatrimony.com/bmimgs/login/login-otp-banner.png" alt="Login" className="img-fluid" />
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/corporate-showing-something-8252908-6622767.png?f=webp" alt="Login" className="img-fluid" />
           </div>
           </Col>
           <Col className='d-flex align-items-center'  xs={12} md={6} lg={4}>
