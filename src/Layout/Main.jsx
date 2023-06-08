@@ -5,7 +5,7 @@ import './Main.css'
 
 const Main = () => {
     return (
-        <div className="container universal-bg">
+        <div className="container-fluid universal-bg">
         <NavigationBar></NavigationBar>
             <Outlet></Outlet>
         </div>
