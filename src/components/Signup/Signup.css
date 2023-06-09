@@ -24,4 +24,16 @@
   .signup-container form .alert {
     margin-bottom: 1rem;
   }
+
+  .password-input{
+    position: relative;
+  }
+
+  .password-toggle{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
   
