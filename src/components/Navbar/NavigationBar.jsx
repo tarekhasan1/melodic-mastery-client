@@ -9,7 +9,7 @@ const NavigationBar = () => {
         <Navbar
           collapseOnSelect
           expand="lg"
-          className="background-color"
+          className="background-color nav-position"
           variant="dark"
         >
           <Container>

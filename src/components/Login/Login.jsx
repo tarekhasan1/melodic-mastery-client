@@ -24,8 +24,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container my-5">
-      <Row className="justify-content-center">
+    <div className="login-container bg-image d-flex align-items-center">
+      <Row className="justify-content-center w-100">
         <Col className='d-flex align-items-center' xs={12} md={6} lg={4}>
           <div className="text-center mt-5">
             <img src="https://cdni.iconscout.com/illustration/premium/thumb/corporate-showing-something-8252908-6622767.png?f=webp" alt="Login" className="img-fluid" />
@@ -67,7 +67,7 @@ const Login = () => {
               </div>
             </div>
             </div>
-            <p className='mt-3 text-secondary'>New to Here? Please <Link className='text-primary fs-3' to='/register'>Register</Link> </p>
+            <p className='mt-3 text-white'>New to Here? Please <Link className='text-warning fs-3' to='/register'>Register</Link> </p>
           </Form>
           </div>
         </Col>

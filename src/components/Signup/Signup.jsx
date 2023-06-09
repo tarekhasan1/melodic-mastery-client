@@ -67,8 +67,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container my-5">
-      <Row className="justify-content-center">
+    <div className="signup-container signup-bg">
+      <Row className="justify-content-center w-100">
         <Col className="d-flex align-items-center" xs={12} md={6} lg={4}>
           <div className="text-center mt-5">
             <img
@@ -152,7 +152,7 @@ const Signup = () => {
 
               <p className="mt-3 text-secondary">
                 Already have an account? Please{" "}
-                <Link className="text-primary fs-3" to="/login">
+                <Link className="text-warning fs-3" to="/login">
                   Login
                 </Link>{" "}
               </p>

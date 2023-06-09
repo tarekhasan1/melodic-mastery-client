@@ -1,6 +1,16 @@
 .background-color {
+    /* background-color: #3a3a49; */
     background-color: rgba(0, 0, 0, 0.4);
   }
+
+  /* .nav-position{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 99999;
+  } */
   
   .active-route {
     color: #e2a5af !important;
