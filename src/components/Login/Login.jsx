@@ -10,6 +10,7 @@ const Login = () => {
 
 
   const onSubmit = (data) => {
+    console.log(data);
     // Simulate login request
     setTimeout(() => {
       if (data.username === 'admin' && data.password === 'password') {

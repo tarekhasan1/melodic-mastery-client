@@ -1,0 +1,12 @@
+.s-container{
+    position: relative;
+}
+
+.s-info{
+    background: rgba(0,0,0, 0.6);
+    position: absolute;
+    padding: 0 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
