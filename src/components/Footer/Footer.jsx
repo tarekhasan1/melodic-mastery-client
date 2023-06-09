@@ -9,7 +9,6 @@ const Footer = () => {
         <Row>
           <Col md={6} className="mt-5 text-center text-md-left">
             <h5>Contact Information</h5>
-            <p>Melodic Mastery - Summer Music School</p>
             <p>Park View, Rangpur, Bangladesh, 5400</p>
             <p>Email: melodic@mastery.com</p>
             <p>Phone: 123-456-7890</p>
