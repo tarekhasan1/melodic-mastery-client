@@ -1,0 +1,32 @@
+.instructor-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(224, 216, 216, 0.7);
+  }
+  
+  .card-image {
+    flex: 1;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-body h2 {
+    margin-top: 0;
+  }
+  
+  .card-body p {
+    margin-bottom: 0.5rem;
+  }
+  

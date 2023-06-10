@@ -65,7 +65,7 @@ const NavigationBar = () => {
                 className={({ isActive }) =>
                   isActive ? "active-route me-4" : "me-4"
                 }
-                to="/instructor"
+                to="/instructors"
               >
                 Instructor
               </NavLink>
