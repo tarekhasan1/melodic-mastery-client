@@ -4,7 +4,13 @@ import { faFacebook, faTwitter, faInstagram, faLinkedin, faPinterest, faYoutube 
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light">
+    <footer className="bg-dark text-light"
+    style={{
+      backgroundImage: "url('https://www.incisiv.com/hubfs/Events/Rock%20and%20Roll%20Underground%202021/Hero_over_bg_v3.gif')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+    >
       <Container>
         <Row>
           <Col md={6} className="mt-5 text-center text-md-left">
