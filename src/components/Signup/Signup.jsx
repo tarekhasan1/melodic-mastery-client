@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 import "./Signup.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Signup = () => {
@@ -16,6 +16,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -25,7 +26,7 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const { password, confirmPassword } = data;
 
     // Check password length
@@ -59,11 +60,15 @@ const Signup = () => {
 
     // Password meets all requirements, continue with form submission
     console.log(data);
-    createUser(data.email, data.password)
-    .then(result =>{
-      const loggedUser = result.user;
-      console.log(loggedUser);
-    })
+
+    try {
+      await createUser(data.email, data.password, data.displayName, data.photoURL);
+      navigate(location.state?.from || "/");
+      alert("Successfully Registered!");
+  } catch (error) {
+      alert("Registered Failed! Try again.");
+      console.log(error);
+  }
   };
 
   return (

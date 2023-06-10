@@ -1,26 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loginError, setLoginError] = useState('');
+  const { logIn } = useContext(AuthContext);
 
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Simulate login request
-    setTimeout(() => {
-      if (data.username === 'admin' && data.password === 'password') {
-        // Successful login
-        alert('Login successful!');
-      } else {
-        // Failed login
-        setLoginError('Invalid username or password');
-      }
-    }, 1000);
+  const onSubmit = async(data) => {
+    try {
+      await logIn(data.email, data.password);
+      Navigate(location.state?.from || "/");
+      alert("Successfully Logged in!");
+  } catch (error) {
+      setLoginError(error.message);
+      console.log(error);
+  }
   };
 
   return (

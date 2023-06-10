@@ -1,13 +1,13 @@
 .login-container {
     position: relative;
-    min-height: 90vh;
+    min-height: 80vh;
   }
 
   .bg-image{
     background-image: url('https://cdn.wallpapersafari.com/93/57/kpGMFg.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;

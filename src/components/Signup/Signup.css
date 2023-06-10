@@ -1,13 +1,13 @@
 .signup-container {
     position: relative;
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   .signup-bg{
-    background-image: url('https://wallpaper-house.com/data/out/11/wallpaper2you_471729.jpg');
+    background-image: url('https://wallpaperaccess.com/full/1163475.png');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;

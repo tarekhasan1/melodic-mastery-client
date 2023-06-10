@@ -5,7 +5,13 @@ import './NavigationBar.css'
 const NavigationBar = () => {
 
     return (
-        <div>
+        <div
+        style={{
+          backgroundImage: "url('https://www.incisiv.com/hubfs/Events/Rock%20and%20Roll%20Underground%202021/Hero_over_bg_v3.gif')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        >
         <Navbar
           collapseOnSelect
           expand="lg"
