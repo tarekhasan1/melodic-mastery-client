@@ -48,7 +48,7 @@ const Instructors = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center text-white mt-5">Our Top Instructors</h1>
+      <h1 className="text-center text-white mt-5">Popular Instructors</h1>
       <p className='text-center text-white mt-4 mb-5'>Our instructors are talented music teachers and skilled instrument players. With their expertise and passion for music, they create an engaging learning environment where students can develop their musical abilities. They offer personalized guidance and support, helping students master their instruments and explore various musical genres. Their dedication and commitment inspire students to cultivate a lifelong love for music.</p>
       <Row className="justify-content-center">
         {sortedInstructors.map((instructor, index) => (

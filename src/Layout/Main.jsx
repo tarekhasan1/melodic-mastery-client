@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 
 const Main = () => {
   return (
-    <div className="container-fluid universal-bg">
+    <div className="universal-bg">
       <NavigationBar></NavigationBar>
       <Outlet></Outlet>
       <Footer></Footer>
