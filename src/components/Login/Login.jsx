@@ -2,16 +2,18 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
 import './Login.css'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loginError, setLoginError] = useState('');
   const { logIn } = useContext(AuthContext);
+  const Navigate = useNavigate();
 
 
   const onSubmit = async(data) => {
+    console.log('data:', data);
     try {
       await logIn(data.email, data.password);
       Navigate(location.state?.from || "/");
@@ -35,7 +37,7 @@ const Login = () => {
           <h2 className='text-center text-white'>Login</h2>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className='my-3' controlId="formUsername">
-              <Form.Control type="email" placeholder='Your Email' {...register('username', { required: true })} />
+              <Form.Control type="email" placeholder='Your Email' {...register('email', { required: true })} />
               {errors.username && <Form.Text className="text-danger">Username is required</Form.Text>}
             </Form.Group>
 
