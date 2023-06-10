@@ -2,14 +2,16 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loginError, setLoginError] = useState('');
-  const { logIn } = useContext(AuthContext);
+  const { logIn, signInWithGoogle } = useContext(AuthContext);
   const Navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
 
   const onSubmit = async(data) => {
@@ -22,6 +24,19 @@ const Login = () => {
       setLoginError(error.message);
       console.log(error);
   }
+  };
+
+
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        Navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -62,7 +77,7 @@ const Login = () => {
               <button className="me-2 border-0 text-secondary  fs-2 bg-transparent">
               <i className="fab fa-github"></i>
               </button>
-              <button className='me-2 border-0 text-secondary fs-2 bg-transparent'>
+              <button onClick={handleSignInWithGoogle} className='me-2 border-0 text-secondary fs-2 bg-transparent'>
               <i className="fab fa-google"></i>
               </button>
               </div>

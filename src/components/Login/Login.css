@@ -4,7 +4,7 @@
   }
 
   .bg-image{
-    background-image: url('https://cdn.wallpapersafari.com/93/57/kpGMFg.jpg');
+    background-image: url('https://static.vecteezy.com/system/resources/previews/003/519/550/original/dark-blue-green-background-with-music-symbols-vector.jpg');
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -21,7 +21,7 @@
   .login-container form {
     padding: 1rem;
     border-radius: 0.25rem;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.7);
   }
   
   .login-container form .form-group {
@@ -30,6 +30,12 @@
   
   .login-container form .form-control {
     border-radius: 0.25rem;
+  }
+
+  .login-container form i:hover{
+    scale: 1.4;
+    transition: 0.4s ease-in-out;
+    color: aqua;
   }
   
   .login-container form .alert {
