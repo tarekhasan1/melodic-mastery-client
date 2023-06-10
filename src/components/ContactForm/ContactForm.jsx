@@ -43,7 +43,7 @@ const ContactForm = () => {
         <Row className='col-container text-white'>
           <Col md={6}>
             <div className="form-container mt-5">
-              <h2 className='text-center'>Contact Us</h2>
+              <h2 className='text-center'>Send A Message!</h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
                   <Form.Label>Name:</Form.Label>
