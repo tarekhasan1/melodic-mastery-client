@@ -28,8 +28,8 @@ const Slider = () => {
         <div className="content-wrapper">
         <h1>Welcome to Melodic Mastery!</h1>
         <p>Discover the Joy of Music! <br /> Join our Instrumental Summer School <span className='text-success'>Melodic Mastery</span> <br /> and unleash your musical talent through expert guidance <br /> and immersive hands-on experiences.</p>
-        <button className="btn p-3 me-3">Our Instructors</button>
-        <button className="btn p-3">Our Classes</button>
+        <button className="btn mt-3 p-3 me-3">Our Instructors</button>
+        <button className="btn mt-3 p-3">Our Classes</button>
         </div>
       </div>
       </div>

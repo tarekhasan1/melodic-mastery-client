@@ -12,6 +12,7 @@ const Footer = () => {
     }}
     >
       <Container>
+      <br />
         <Row>
           <Col md={6} className="mt-5 text-center text-md-left">
             <h5>Contact Information</h5>
@@ -56,7 +57,8 @@ const Footer = () => {
           </ul>
           </Col>
         </Row>
-        <hr />
+        <br />
+        <br />
         <Row>
           <Col className="text-center">
             <p>&copy; {new Date().getFullYear()} Melodic Mastery. All rights reserved.</p>

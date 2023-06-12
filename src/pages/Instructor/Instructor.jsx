@@ -102,7 +102,10 @@ const instructorsData = [
       'flip-left',
       'flip-right',
       'slide-up',
-      'slide-down'
+      'flip-down',
+      'flip-left',
+      'flip-right',
+      'slide-up',
     ];
 
 const Instructor = () => {
@@ -122,7 +125,14 @@ const Instructor = () => {
       };
 
   return (
-    <Container className='my-5'>
+    <Container className='my-5'
+    style={{
+        backgroundImage:
+          "url('https://www.seekpng.com/png/full/821-8215450_music-note-background-musical-note.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
     <h1 className='text-white text-center'>Instructors</h1>
     <Row>
       {instructorsData.map((instructor, index) => (
