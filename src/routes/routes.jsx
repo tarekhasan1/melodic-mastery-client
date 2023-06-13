@@ -6,6 +6,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Home from "../components/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import AllClasses from "../pages/Classes/AllClasses";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         {
           path: '/instructors',
           element: <Instructor></Instructor>
+        },
+        {
+          path: '/dashboard',
+          element: <Dashboard></Dashboard>
         },
         {
             path: '/login',
