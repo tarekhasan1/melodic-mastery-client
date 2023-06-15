@@ -1,17 +1,39 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
 import { Row, Col, Nav, Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './StudentDashboard.css'
+import useClasses from '../../hooks/useClasses';
+import axios from 'axios';
 
-const StudentDashboard = () => {
+const StudentDashboard = ( {studentData} ) => {
+  const classesID = studentData.selectedClasses;
+  const email = studentData.email;
   const [activeTab, setActiveTab] = useState('selected');
 
-  const classes = [
-    { id: 1, name: 'Mathematics', enrolledStudents: 20, availableSeats: 30, instructorName: 'John Doe', instructorEmail: 'john.doe@example.com', price: 100 },
-    { id: 2, name: 'Science', enrolledStudents: 25, availableSeats: 35, instructorName: 'Jane Smith', instructorEmail: 'jane.smith@example.com', price: 150 },
-    { id: 3, name: 'English', enrolledStudents: 18, availableSeats: 22, instructorName: 'David Johnson', instructorEmail: 'david.johnson@example.com', price: 120 },
-    // Add more classes here
-  ];
+  const [classes, loading] = useClasses();
+  const [selectedClasses, setSelectedClasses] = useState([]);
+
+  useEffect(() => {
+      !loading &&
+          setSelectedClasses(
+              classes.filter((c) => classesID.includes(c._id))
+          );
+  }, [loading, classes, classesID]);
+
+  const handleDelete = async (id) => {
+      setSelectedClasses((prev) => prev.filter((c) => c._id != id));
+
+      try {
+          // sent unselect request
+          const response = await axios.put(
+              `http://localhost:5000/user/unselected-class?id=${id}&email=${email}`
+          );
+          console.log(response.data);
+      } catch (error) {
+          console.log(error);
+      }
+  };
 
 
   const data = [
@@ -50,20 +72,22 @@ const StudentDashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {classes.map((classItem, index) => (
-            <tr key={classItem.id}>
+          {!loading &&
+            Array.isArray(selectedClasses) &&
+            selectedClasses.map((classItem, index) => (
+            <tr key={classItem._id}>
               <td>{index + 1}</td>
               <td>{classItem.name}</td>
               <td>{classItem.enrolledStudents}</td>
-              <td>{classItem.availableSeats}</td>
-              <td>{classItem.instructorName}</td>
-              <td>{classItem.instructorEmail}</td>
+              <td>{classItem.seats}</td>
+              <td>{classItem.instructor}</td>
+              <td>{classItem.email}</td>
               <td>{classItem.price}</td>
               <td>
                 <Button variant="primary">Pay</Button>
               </td>
               <td>
-                <Button variant="danger">Delete</Button>
+                <Button  onClick={() => handleDelete(classItem._id)} variant="danger">Delete</Button>
               </td>
             </tr>
           ))}
