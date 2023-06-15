@@ -69,7 +69,7 @@ const AllClasses = () => {
       <Row>
         {!classLoading &&
           Array.isArray(classes) && classes.map((classItem) => (
-          <Col key={classItem.id} xs={12} sm={6} md={4} lg={3}>
+          <Col key={classItem._id} xs={12} sm={6} md={4} lg={3}>
             <div className="card mb-3">
               <div className="card-img">
                 <img className='rounded-2' src={classItem.image} alt={classItem.name}  style={{ width: '100%', height: '250px' }}/>
