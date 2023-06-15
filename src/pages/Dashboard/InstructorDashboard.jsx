@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Row, Col, Nav, Form, Button, Table, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./StudentDashboard.css";
-import { AuthContext } from "../../providers/AuthProviders";
+import axios from "axios";
 
-const InstructorDashboard = () => {
-  const { user } = useContext(AuthContext);
+const InstructorDashboard = ({instructorData}) => {
   const [activeTab, setActiveTab] = useState("selected");
   const [className, setClassName] = useState("");
   const [classImage, setClassImage] = useState(null);
@@ -16,25 +16,45 @@ const InstructorDashboard = () => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
 
-  const instructorName = user.displayName;
-  const instructorEmail = user.email;
+  const instructorName = instructorData.name;
+  const instructorEmail = instructorData.email;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newClass = {
-      className: className,
-      classImage: classImage,
-      instructorName: instructorName,
-      instructorEmail: instructorEmail,
-      availableSeats: availableSeats,
-      price: price,
-      status: "pending",
+      name: className,
+      image: classImage,
+      instructor: instructorName,
+      email: instructorEmail,
+      seats: availableSeats,
+      price: price
     };
     console.log(newClass);
     setClasses([...classes, newClass]);
-    // Just logging the newClass object for demonstration purposes
-    // Send the newClass object to your backend or database for further processing/storage
-    // Replace with your actual method of sending data to the server
+    try {
+      const response = await axios.post(
+          `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/add-class`,
+          JSON.stringify(newClass),
+          {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+      );
+      console.log(response.data);
+      if (response.data.message) {
+        alert(response.data.message);
+        setClassName('');
+        setClassImage('');
+        setPrice(0);
+        setAvailableSeats(0);
+    } else if (response.data.error) {
+        alert(response.data.error);
+    }
+  } catch (error) {
+      alert("Failed to Add! Try again.");
+      console.log(error);
+  }
   };
 
   //   my classes functionality
@@ -63,7 +83,7 @@ const InstructorDashboard = () => {
   let content;
   if (activeTab === "selected") {
     content = (
-      <div className="container-fluid">
+      <div className="container-fluid text-white">
         <h4 className="text-center text-white my-3">Add A Class</h4>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="className">
@@ -116,7 +136,7 @@ const InstructorDashboard = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button className="mt-3" variant="primary" type="submit">
             Add
           </Button>
         </Form>
