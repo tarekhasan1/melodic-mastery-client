@@ -12,7 +12,7 @@ const useUserInfo = (isAll) => {
             if (user) {
                 const path = isAll == "all" ? "users" : "single-user";
                 try {
-                    const response = await axios.get(`http://localhost:5000/${path}?email={user?.email}`);
+                    const response = await axios.get(`http://localhost:5000/${path}?email=${user?.email}`);
                     // console.log(response.data);
                     setData(response.data);
                     setLoading(false);

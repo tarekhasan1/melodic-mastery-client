@@ -4,6 +4,7 @@ import { Button, Form, Alert, Row, Col } from 'react-bootstrap';
 import './Login.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
+import axios from 'axios';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -32,12 +33,38 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
+        createUserData(loggedInUser.displayName, loggedInUser.photoURL, loggedInUser.email);
         Navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+
+      // create user in database
+      async function createUserData(name, image, email) {
+        try {
+            const response = await axios.post(
+                `
+                http://localhost:5000/create-user`,
+                JSON.stringify({
+                    name,
+                    image,
+                    email,
+                    role: "student",
+                }),
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
   return (
     <div className="login-container bg-image d-flex align-items-center">
