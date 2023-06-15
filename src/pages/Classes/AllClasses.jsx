@@ -50,7 +50,7 @@ const AllClasses = () => {
 
           try {
               // send update request to select
-              const response = await axios.put(`http://localhost:5000/user/selected-class?id=${id}&email=${user?.email}`);
+              const response = await axios.put(`${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/user/selected-class?id=${id}&email=${user?.email}`);
               console.log(response.data);
           } catch (error) {
               console.log(error);

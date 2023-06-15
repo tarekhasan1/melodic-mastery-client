@@ -27,7 +27,7 @@ const StudentDashboard = ( {studentData} ) => {
       try {
           // sent unselect request
           const response = await axios.put(
-              `http://localhost:5000/user/unselected-class?id=${id}&email=${email}`
+              `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/user/unselected-class?id=${id}&email=${email}`
           );
           console.log(response.data);
       } catch (error) {

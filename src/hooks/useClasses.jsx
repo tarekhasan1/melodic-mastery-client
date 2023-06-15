@@ -9,7 +9,7 @@ const useClasses = () => {
         const getData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/classes`
+                    `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/classes`
                 );
                 // console.log(response.data);
                 setData(response.data);

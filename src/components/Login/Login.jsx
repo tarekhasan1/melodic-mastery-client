@@ -47,7 +47,7 @@ const Login = () => {
         try {
             const response = await axios.post(
                 `
-                http://localhost:5000/create-user`,
+                ${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/create-user`,
                 JSON.stringify({
                     name,
                     image,
