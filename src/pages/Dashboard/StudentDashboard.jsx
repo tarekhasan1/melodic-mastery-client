@@ -102,12 +102,12 @@ const StudentDashboard = ( {studentData} ) => {
         <Table variant='dark' striped bordered hover>
         <thead>
           <tr>
-            <th>Classes</th>
-            <th>Price</th>
-            <th>Payment Status</th>
-            <th>Payment Method</th>
-            <th>Transaction ID</th>
-            <th>Date</th>
+            <th>Class Name</th>
+            <th>Instructor</th>
+            <th>Instructor Email</th>
+            <th>Available Seats</th>
+            <th>Enrolled Students</th>
+            <th>Paid Amount</th>
           </tr>
         </thead>
         <tbody>
