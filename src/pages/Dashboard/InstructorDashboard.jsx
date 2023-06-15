@@ -4,6 +4,7 @@ import { Row, Col, Nav, Form, Button, Table, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./StudentDashboard.css";
 import axios from "axios";
+import useClasses from "../../hooks/useClasses";
 
 const InstructorDashboard = ({instructorData}) => {
   const [activeTab, setActiveTab] = useState("selected");
@@ -11,10 +12,10 @@ const InstructorDashboard = ({instructorData}) => {
   const [classImage, setClassImage] = useState(null);
   const [availableSeats, setAvailableSeats] = useState(0);
   const [price, setPrice] = useState(0);
-
-  const [classes, setClasses] = useState([]);
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [classes, loading] = useClasses();
+  const myClasses = classes.filter((c) => c.email == instructorData.email);
 
   const instructorName = instructorData.name;
   const instructorEmail = instructorData.email;
@@ -30,7 +31,6 @@ const InstructorDashboard = ({instructorData}) => {
       price: price
     };
     console.log(newClass);
-    setClasses([...classes, newClass]);
     try {
       const response = await axios.post(
           `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/add-class`,
@@ -153,16 +153,20 @@ const InstructorDashboard = ({instructorData}) => {
                 <th>Class Name</th>
                 <th>Status</th>
                 <th>Total Enrolled Students</th>
+                <th>Price</th>
                 <th>Feedback</th>
                 <th>Update</th>
               </tr>
             </thead>
             <tbody>
-              {classes.map((c, index) => (
+              {!loading &&
+                Array.isArray(myClasses) &&
+                myClasses.map((c, index) => (
                 <tr key={index}>
-                  <td>{c.className}</td>
+                  <td>{c.name}</td>
                   <td>{c.status}</td>
-                  <td>{c.totalEnrolledStudents}</td>
+                  <td>{c.enrolledStudents}</td>
+                  <td>{c.price}</td>
                   <td>
                     {c.status === "denied" ? (
                       <Button
@@ -176,14 +180,12 @@ const InstructorDashboard = ({instructorData}) => {
                     )}
                   </td>
                   <td>
-                    {c.status === "denied" && (
                       <Button
                         variant="primary"
                         onClick={() => handleShowFeedbackModal(c.feedback)}
                       >
                         Update
                       </Button>
-                    )}
                   </td>
                 </tr>
               ))}
