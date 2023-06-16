@@ -7,6 +7,7 @@ import Home from "../components/Home/Home";
 import Instructor from "../pages/Instructor/Instructor";
 import AllClasses from "../pages/Classes/AllClasses";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/dashboard',
-          element: <Dashboard></Dashboard>
+          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
         },
         {
             path: '/login',
