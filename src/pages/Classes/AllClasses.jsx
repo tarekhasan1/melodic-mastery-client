@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthProviders';
 import axios from 'axios';
 import useUserInfo from '../../hooks/useUserInfo';
 import useClasses from '../../hooks/useClasses';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './AllClasses.css'
 
 
@@ -15,6 +15,7 @@ const AllClasses = () => {
   const [userData, loading] = useUserInfo();
   const [classData, classLoading] = useClasses();
   const [classes, setClasses] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const AllClasses = () => {
   const handleSelect = async (id) => {
       // if does not logged in
       if (!user) {
-          navigate("/login");
+          navigate("/login", {state: {from: location}});
           alert("You have to log in first to select a class.");
       } else {
           userData.selectedClasses.push(id);
@@ -70,7 +71,7 @@ const AllClasses = () => {
         {!classLoading &&
           Array.isArray(classes) && classes.map((classItem) => (
           <Col key={classItem._id} xs={12} sm={6} md={4} lg={3}>
-            <div className="card mb-3">
+            <div className="card mb-3" style={{backgroundColor: `${classItem.seats==0 && 'red'}`}}>
               <div className="card-img">
                 <img className='rounded-2' src={classItem.image} alt={classItem.name}  style={{ width: '100%', height: '250px' }}/>
               </div>

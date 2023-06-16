@@ -22,7 +22,7 @@ const Login = () => {
     console.log("data:", data);
     try {
       await logIn(data.email, data.password);
-      Navigate(location.state?.from || "/");
+      Navigate(from, { replace: true });
       alert("Successfully Logged in!");
     } catch (error) {
       setLoginError(error.message);

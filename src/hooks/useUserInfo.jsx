@@ -25,7 +25,7 @@ const useUserInfo = (isAll) => {
             if (!user && isAll == "all") {
                 try {
                     const response = await axios.get(
-                        "${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/users"
+                        `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/users`
                     );
                     setData(response.data);
                     setLoading(false);

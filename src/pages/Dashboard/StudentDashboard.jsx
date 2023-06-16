@@ -133,10 +133,10 @@ const StudentDashboard = ( {studentData} ) => {
         <Col md={3}>
           <div  className='menu-height bg-dark'>
               <Nav variant="pills" className="flex-column pt-5">
-                <Nav.Item>
+                <Nav.Item className='mb-3'>
                   <Link className='text-decoration-none' to="/"> <i className='fas fa-home'></i> Home</Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item className='mb-3'>
                   <Nav.Link
                     eventKey="selected"
                     active={activeTab === 'selected'}
@@ -145,7 +145,7 @@ const StudentDashboard = ( {studentData} ) => {
                     Selected Classes
                   </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item className='mb-3'>
                   <Nav.Link
                     eventKey="enrolled"
                     active={activeTab === 'enrolled'}
