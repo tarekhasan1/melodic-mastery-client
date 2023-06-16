@@ -13,7 +13,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [loginError, setLoginError] = useState("");
-  const { logIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, signInWithGithub, signInWithFacebook } = useContext(AuthContext);
   const Navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -48,6 +48,24 @@ const Login = () => {
   };
   const handleSignInWithGithub = () => {
     signInWithGithub()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        createUserData(
+          loggedInUser.displayName,
+          loggedInUser.photoURL,
+          loggedInUser.email
+        );
+        Navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+  const handleSignInWithFacebook = () => {
+    signInWithFacebook()
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
@@ -140,7 +158,8 @@ const Login = () => {
                 <div>
                   <h3 className="text-white">Log in with</h3>
                   <div>
-                    <button className="ms-0 me-2 border-0  fs-2 text-secondary bg-transparent">
+                    <button
+                    onClick={handleSignInWithFacebook} className="ms-0 me-2 border-0  fs-2 text-secondary bg-transparent">
                       <i className="fab fa-facebook"></i>
                     </button>
                     <button onClick={handleSignInWithGithub} className="me-2 border-0 text-secondary  fs-2 bg-transparent">
