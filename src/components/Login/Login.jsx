@@ -13,7 +13,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [loginError, setLoginError] = useState("");
-  const { logIn, signInWithGoogle } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
   const Navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -32,6 +32,22 @@ const Login = () => {
 
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        createUserData(
+          loggedInUser.displayName,
+          loggedInUser.photoURL,
+          loggedInUser.email
+        );
+        Navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleSignInWithGithub = () => {
+    signInWithGithub()
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
@@ -127,7 +143,7 @@ const Login = () => {
                     <button className="ms-0 me-2 border-0  fs-2 text-secondary bg-transparent">
                       <i className="fab fa-facebook"></i>
                     </button>
-                    <button className="me-2 border-0 text-secondary  fs-2 bg-transparent">
+                    <button onClick={handleSignInWithGithub} className="me-2 border-0 text-secondary  fs-2 bg-transparent">
                       <i className="fab fa-github"></i>
                     </button>
                     <button

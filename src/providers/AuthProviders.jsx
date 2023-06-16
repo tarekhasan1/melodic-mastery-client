@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     getAuth,
@@ -15,6 +16,7 @@ export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const github = new GithubAuthProvider();
 
 // eslint-disable-next-line react/prop-types
 const AuthProviders = ({children}) => {
@@ -54,6 +56,10 @@ const AuthProviders = ({children}) => {
         return signInWithPopup(auth, provider);
       };
 
+      const signInWithGithub = () =>{
+        return signInWithPopup(auth, github);
+      }
+
       const logIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
       };
@@ -70,6 +76,7 @@ const AuthProviders = ({children}) => {
         createUser,
         logIn,
         signInWithGoogle,
+        signInWithGithub,
         logOut
       };
 
