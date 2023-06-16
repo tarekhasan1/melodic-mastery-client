@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Slider.css'
+import { Button } from 'react-bootstrap';
 
 const Slider = () => {
     const [backgroundClass, setBackgroundClass] = useState('background-1');
@@ -28,8 +29,8 @@ const Slider = () => {
         <div className="content-wrapper">
         <h1>Welcome to Melodic Mastery!</h1>
         <p>Discover the Joy of Music! <br /> Join our Instrumental Summer School <span className='text-success'>Melodic Mastery</span> <br /> and unleash your musical talent through expert guidance <br /> and immersive hands-on experiences.</p>
-        <button className="btn mt-3 p-3 me-3">Our Instructors</button>
-        <button className="btn mt-3 p-3">Our Classes</button>
+        <Button className="mt-3 p-3 me-3 w-25">Instructors</Button>
+        <Button className="mt-3 p-3 w-25">Classes</Button>
         </div>
       </div>
       </div>

@@ -1,15 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Row, Col, Nav, Table, Button } from 'react-bootstrap';
+import { Row, Col, Nav, Table, Button, Card, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './StudentDashboard.css'
 import useUserInfo from '../../hooks/useUserInfo';
 import axios from 'axios';
+import useClasses from '../../hooks/useClasses';
 
 const AdminDashboard = ( {adminData}) => {
   const [activeTab, setActiveTab] = useState('selected');
   const [userData, loading] = useUserInfo("all");
   const [allUsers, setAllUsers] = useState([]);
+
+  const [classes, ClassLoading] = useClasses();
+  const [allClasses, setAllClasses] = useState([]);
+  const [classId, setClassId] = useState("");
+  const [message, setMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+
+  //modal for classes feedback
+  const handleClose = () => {
+    // Logic for closing the modal
+    setShowModal(false);
+  };
 
   useEffect(() => {
       !loading &&
@@ -43,6 +57,58 @@ const AdminDashboard = ( {adminData}) => {
   };
 
 
+  //manage classes functionality
+
+  useEffect(() => {
+      !ClassLoading && setAllClasses(classes);
+  }, [ClassLoading, classes]);
+
+  const handleStatus = async (status, id) => {
+      const updatedClasses = allClasses.map((c) => {
+          if (c._id == id) {
+              c.status = status;
+          }
+          return c;
+      });
+      setAllClasses(updatedClasses);
+
+      try {
+          // sent status change request
+          const response = await axios.put(
+              `${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/update-status?id=${id}&status=${status}`
+          );
+          response.data.message && alert(response.data.message);
+      } catch (error) {
+          console.log(error);
+      }
+  };
+
+  const handleFeedback = async () => {
+      if (message) {
+          try {
+              // sent status change request
+              const response = await axios.put(
+                  `${
+                      import.meta.env.VITE_MELODIC_MASTERY_SERVER
+                  }/send-feedback?id=${classId}`,
+                  JSON.stringify({
+                      message,
+                  }),
+                  {
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                  }
+              );
+              response.data.message && alert(response.data.message);
+              setMessage("");
+          } catch (error) {
+              console.log(error);
+          }
+      } else alert("Please write something before send!");
+  };
+
+
   const handleTabSelect = (tab) => {
     setActiveTab(tab);
   };
@@ -52,8 +118,8 @@ const AdminDashboard = ( {adminData}) => {
     content = (
         <div className='container-fluid'>
         <h4 className='text-center text-white my-3'>Manage Users</h4>
-        <div>
-        <Table variant='dark' responsive>
+        <div className='rounded-3'>
+        <Table className='rounded-3' striped variant='success' responsive>
             <thead>
                 <tr className="text-white">
                     <th></th>
@@ -115,9 +181,92 @@ const AdminDashboard = ( {adminData}) => {
   } else if (activeTab === 'enrolled') {
     content = (
         <div>
-        <h4 className='text-center text-white my-3'>Manage Classes</h4>
+    <h4 className='text-center text-white my-3'>Manage Classes</h4>
+    <Row>
+        {!ClassLoading &&
+            Array.isArray(allClasses) &&
+            allClasses.map(({ _id, name, image, instructor, email, seats, price, status }) => (
+                <Col sm={12} key={_id} className="mb-5">
+                    <Card className="h-100">
+                        <Row>
+                            <Col md={4}>
+                                <Card.Img src={image} alt={name} className="img-fluid h-100" />
+                            </Col>
+                            <Col md={8}>
+                                <Card.Body>
+                                    <Card.Title>Class Name: {name}</Card.Title>
+                                    <Card.Text>
+                                        <b>Instructor:</b> {instructor}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <b>Email:</b> {email}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <b>Available seats:</b> {seats}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <b>Price:</b> ${price}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <b>Status:</b> {status}
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer className="d-flex justify-content-center">
+                                    <Button
+                                        onClick={() => handleStatus("approved", _id)}
+                                        className="btn btn-success me-2"
+                                        disabled={status === "approved" || status === "denied"}
+                                    >
+                                        Approve
+                                    </Button>
+                                    <Button
+                                        onClick={() => handleStatus("denied", _id)}
+                                        className="btn btn-danger me-2"
+                                        disabled={status === "approved" || status === "denied"}
+                                    >
+                                        Deny
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setShowModal(true);
+                                            setClassId(_id);
+                                        }}
+                                        className="btn btn-warning"
+                                    >
+                                        Feedback
+                                    </Button>
+                                </Card.Footer>
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
+            ))}
+    </Row>
 
-        </div>
+    <Modal show={showModal} onHide={handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title>Feedback</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <Form.Control
+        as="textarea"
+        className="w-100 mt-3"
+        rows={10}
+        placeholder="Write the reason for approved/denied."
+        onChange={(e) => setMessage(e.target.value)}
+        value={message}
+      />
+    </Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={handleClose}>
+        Close
+      </Button>
+      <Button variant="warning" onClick={handleFeedback}>
+        Send
+      </Button>
+    </Modal.Footer>
+  </Modal>
+</div>
     );
   }
 

@@ -73,7 +73,7 @@
       background-color: #3f4a80;
     }
   
-    .banner-content button:hover {
+    .banner-content Button:hover {
       font-size: 22px;
       color: rgb(241, 233, 233);
       background-color: #2e305e;
