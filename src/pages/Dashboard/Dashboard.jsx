@@ -2,6 +2,7 @@ import { Spinner } from "react-bootstrap";
 import useUserInfo from "../../hooks/useUserInfo";
 import InstructorDashboard from "./InstructorDashboard";
 import StudentDashboard from "./StudentDashboard";
+import AdminDashboard from "./AdminDashboard";
 
 const Dashboard = () => {
     const [userData, loading] = useUserInfo();
@@ -17,6 +18,9 @@ const Dashboard = () => {
         )}
         {!loading && userRole === "instructor" && (
             <InstructorDashboard instructorData={userData} />
+        )}
+        {!loading && (userRole === "superAdmin" || userRole === "admin") && (
+            <AdminDashboard adminData={userData} />
         )}
         </div>
     );

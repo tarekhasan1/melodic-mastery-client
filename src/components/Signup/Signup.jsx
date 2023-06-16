@@ -5,6 +5,7 @@ import "./Signup.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import axios from "axios";
 
 const Signup = () => {
   const {
@@ -62,14 +63,44 @@ const Signup = () => {
     console.log(data);
 
     try {
-      await createUser(data.email, data.password, data.displayName, data.photoURL);
+      await createUser(data.email, data.password, data.name, data.photoURL);
       navigate(location.state?.from || "/");
+      createUserData(
+        data.name,
+        data.photoURL,
+        data.email
+      );
       alert("Successfully Registered!");
   } catch (error) {
       alert("Registered Failed! Try again.");
       console.log(error);
   }
   };
+
+
+    // create user in database
+    async function createUserData(name, image, email) {
+      try {
+        const response = await axios.post(
+          `
+                  ${import.meta.env.VITE_MELODIC_MASTERY_SERVER}/create-user`,
+          JSON.stringify({
+            name,
+            image,
+            email,
+            role: "student",
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
   return (
     <div className="signup-container signup-bg">
