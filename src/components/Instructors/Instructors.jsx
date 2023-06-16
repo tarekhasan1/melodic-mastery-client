@@ -26,7 +26,7 @@ const Instructors = () => {
               }) => (
           <Col key={_id} xs={12} md={6} lg={4} className="mb-4 d-flex align-items-center">
             <Card className='w-100 box-shade' style={{ height: '100%' }}>
-            <Card.Img variant="top" src={image} alt={name} style={{ objectFit: 'contain', width: '100%', height: '450px' }} />
+            <Card.Img className='rounded-3' variant="top" src={image} alt={name} style={{ objectFit: 'cover', width: '100%', height: '400px' }} />
               <Card.Body className='text-center'>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>{email}</Card.Text>

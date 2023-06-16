@@ -61,7 +61,7 @@ const Instructor = () => {
           data-aos-duration="2000"
           >
             <div className="card-image">
-              <img src={instructor.image} alt={instructor.name} />
+              <img className='w-100 rounded-3' src={instructor.image} alt={instructor.name} />
             </div>
             <div className="card-body">
               <h2>{instructor.name}</h2>
