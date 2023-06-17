@@ -12,7 +12,7 @@ const ContactForm = () => {
   });
 
   useEffect(() => {
-    AOS.init(); // Initialize AOS
+    AOS.init({duration: 1000}); // Initialize AOS
   }, []);
 
   const handleChange = (e) => {

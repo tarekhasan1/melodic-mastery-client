@@ -56,7 +56,7 @@ const SuccessStory = () => {
   ];
 
   useEffect(() => {
-    AOS.init(); // Initialize AOS
+    AOS.init({duration: 1000}); // Initialize AOS
   }, []);
 
   return (
