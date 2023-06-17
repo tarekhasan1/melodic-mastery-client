@@ -84,7 +84,8 @@ const StudentDashboard = ( {studentData} ) => {
               <td>{classItem.email}</td>
               <td>{classItem.price}</td>
               <td>
-                <Button variant="primary">Pay</Button>
+                <Link className='btn btn-primary' to="/payment"
+                state={{ price: classItem.price }} variant="primary">Pay</Link>
               </td>
               <td>
                 <Button  onClick={() => handleDelete(classItem._id)} variant="danger">Delete</Button>

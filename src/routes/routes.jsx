@@ -8,6 +8,7 @@ import Instructor from "../pages/Instructor/Instructor";
 import AllClasses from "../pages/Classes/AllClasses";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
         {
           path: '/register',
           element: <Signup></Signup>
+        },
+        {
+          path: '/payment',
+          element: <PrivateRoute>
+          <Payment></Payment>
+          </PrivateRoute>
         }
       ]
     },
