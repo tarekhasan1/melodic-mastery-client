@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import "./NavigationBar.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
-const NavigationBar = () => {
+const NavigationBar = ({darkMode, setDarkMode}) => {
   const { user, logOut } = useContext(AuthContext);
   console.log("nav user: ", user);
 
@@ -16,20 +17,25 @@ const NavigationBar = () => {
       });
   };
 
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div
-      style={{
-        backgroundImage:
-          "url('https://www.incisiv.com/hubfs/Events/Rock%20and%20Roll%20Underground%202021/Hero_over_bg_v3.gif')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+    style={darkMode ? {
+      backgroundImage: "url('https://www.incisiv.com/hubfs/Events/Rock%20and%20Roll%20Underground%202021/Hero_over_bg_v3.gif')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    } : {}}
     >
       <Navbar
         collapseOnSelect
         expand="lg"
-        className="background-color nav-position"
-        variant="dark"
+        className={`background-color nav-position ${
+          darkMode ? "background-color-1" : "background-color-2"
+        }`}
+        variant={darkMode ? "dark" : "light"}
       >
         <Container>
           <Navbar.Brand className="text-secondary fancy-font fs-3" href="/">
@@ -79,13 +85,25 @@ const NavigationBar = () => {
                   Dashboard
                 </NavLink>
               )}
+              <NavLink>
+              <Button
+                onClick={handleDarkModeToggle}
+                className="bg-transparent border-0 me-0"
+              >
+                {darkMode ? (
+                  <i className="fas fa-sun fs-4"></i>
+                ) : (
+                  <i className="fas fa-moon fs-4"></i>
+                )}
+              </Button>
+              </NavLink>
             </Nav>
             <Nav>
               {user ? (
                 <div>
                   <div className="d-flex align-items-center">
                     <img
-                      className="img-control me-2"
+                      className="img-control"
                       src={user.photoURL}
                       alt=""
                       title={user.displayName}

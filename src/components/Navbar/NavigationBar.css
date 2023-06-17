@@ -1,6 +1,18 @@
-.background-color {
+.background-color-1 {
     /* background-color: #3a3a49; */
     background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+.background-color-2 {
+    /* background-color: #3a3a49; */
+    background-color: #5d5d5d;
+    opacity: 1;
+
+  }
+
+  .background-color-2   .active-route {
+    color: #ffffff !important;
+    font-weight: 500;
   }
 
   /* .nav-position{
@@ -26,6 +38,12 @@
   .background-color a {
     text-decoration: none;
     color: #61da6f;
+    margin: 5px 5px;
+  }
+
+  .background-color-2 a {
+    text-decoration: none;
+    color: #1d231e;
     margin: 5px 5px;
   }
   

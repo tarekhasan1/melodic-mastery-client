@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faLinkedin, faPinterest, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-const Footer = () => {
+const Footer = ({darkMode}) => {
   return (
-    <footer className="bg-dark text-light"
+    <footer className={`${darkMode ? "bg-dark text-light" : "bg-secondary text-dark"}`}
     style={{
       backgroundImage: "url('https://www.incisiv.com/hubfs/Events/Rock%20and%20Roll%20Underground%202021/Hero_over_bg_v3.gif')",
       backgroundSize: 'cover',
