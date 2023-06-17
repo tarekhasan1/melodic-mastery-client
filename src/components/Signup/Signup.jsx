@@ -6,8 +6,10 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import axios from "axios";
+import useTitle from "../../hooks/useTitle";
 
 const Signup = () => {
+  useTitle("SignUp");
   const {
     register,
     handleSubmit,

@@ -4,12 +4,14 @@ import { useLocation } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "./CheckOutForm";
+import useTitle from "../../../hooks/useTitle";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK); //published key (pk)
 
 const Payment = () => {
+  useTitle("Payment");
     const location = useLocation();
 
     const options = {

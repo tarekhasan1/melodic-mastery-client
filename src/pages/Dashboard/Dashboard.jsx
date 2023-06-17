@@ -3,8 +3,10 @@ import useUserInfo from "../../hooks/useUserInfo";
 import InstructorDashboard from "./InstructorDashboard";
 import StudentDashboard from "./StudentDashboard";
 import AdminDashboard from "./AdminDashboard";
+import useTitle from "../../hooks/useTitle";
 
 const Dashboard = () => {
+    useTitle("Dashboard");
     const [userData, loading] = useUserInfo();
     const userRole = userData.role;
 

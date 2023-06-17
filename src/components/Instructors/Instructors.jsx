@@ -1,8 +1,10 @@
 import { Card, Button, Col, Row } from 'react-bootstrap';
 import './Instructions.css'
 import useUserInfo from '../../hooks/useUserInfo';
+import useTitle from '../../hooks/useTitle';
 
 const Instructors = () => {
+  useTitle("Instructors");
   const [userData, loading] = useUserInfo("all");
   const instructors = userData.filter((data) => data.role == "instructor");
   const sortedByStudent = instructors

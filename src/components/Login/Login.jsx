@@ -5,8 +5,10 @@ import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import axios from "axios";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+  useTitle("Login");
   const {
     register,
     handleSubmit,
